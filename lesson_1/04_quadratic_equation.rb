@@ -1,14 +1,14 @@
-=begin
-Пользователь вводит 3 коэффициента a, b и с. Программа вычисляет дискриминант (D)
-и корни уравнения (x1 и x2, если они есть) и выводит значения дискриминанта и корней на экран
-=end
+# Пользователь вводит 3 коэффициента a, b и с.
+# Программа вычисляет дискриминант (D)
+# и корни уравнения (x1 и x2, если они есть) и выводит значения дискриминанта
+# и корней на экран
 
-puts "Введите коефициенты a,b,c через запятую: "
+puts 'Введите коефициенты a,b,c через запятую: '
 weights = gets.chomp.split(',').map(&:to_i)
-discriminant = weights[1] ** 2 - 4 * weights[0] * weights[2]
-if discriminant < 0
-  puts "Корней нет"
-elsif discriminant == 0
+discriminant = weights[1]**2 - 4 * weights[0] * weights[2]
+if discriminant.negative?
+  puts 'Корней нет'
+elsif discriminant.zero?
   x = (Math.sqrt(discriminant) - weights[1]) / 2.0 * weights[0]
   puts "В уравнении один корень = #{x}"
 else

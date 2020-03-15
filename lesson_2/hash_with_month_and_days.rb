@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Make hash which contains months and nuber of days of them,
 # and display only months with 30 days
 

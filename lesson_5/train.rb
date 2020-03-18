@@ -1,14 +1,26 @@
 # frozen_string_literal: true
 
+require_relative 'factory.rb'
+require_relative 'instance_counter.rb'
+
 # Parent Train class
 class Train
+  include Factory
+  include InstanceCounter
   attr_reader :number, :current_station
   attr_accessor :speed
+  @@all_trains = []
 
   def initialize(number)
     @number = number
     @carriages = []
     @speed = 0
+    @@all_trains << self
+    register_instance
+  end
+
+  def self.find(train_number)
+    @@all_trains.select { |train| train.number == train_number }
   end
 
   def route=(new_route)

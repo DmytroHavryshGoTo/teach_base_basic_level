@@ -7,8 +7,15 @@ class Station
 
   def initialize(name)
     @name = name
+    valid!
     @list_of_trains = []
     @@stations += 1
+  end
+
+  def valid?
+    valid?
+  rescue StandardError
+    false
   end
 
   def self.all
@@ -39,5 +46,15 @@ class Station
 
   def remove_train
     @list_of_trains.pop
+  end
+
+  protected
+
+  def valid!
+    raise 'Name is required!' if @name.nil?
+    raise 'Name is too short!' if @name.length < 3
+    raise 'Name must be string!' unless @name.is_a? String
+    
+    true
   end
 end

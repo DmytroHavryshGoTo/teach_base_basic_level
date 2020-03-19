@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
-# Create module, that implement manufacturer(set and get), include it to
-# Train and Carriage. In class Station create class method 'all', that return
-# all created station objects. In class Train create class method 'find', that
-# find and return train by number(or nil if not found).
-# Create module InstanceCounter, that contains class methods: 'instances'(return
-# quantity of instances; instance methods: 'register_instance'(increment
-# counter of instances, must not be public can be called from constructur).
+# Implement validation in classes(valid! and valid? mathods) - check main
+# attributes. Validation must be called from constructur and not create
+# instance if something wrong.
+# Implement train number regex check, that
+# must be: any 3 numbers or letters than hypen(optional) and 2 numbers
+# or letters.
+# In user interface implement error catching(if user typed something wrong
+# it should be re-typed).
 
 require_relative 'passenger_train'
 require_relative 'cargo_train'
@@ -27,6 +28,10 @@ class Main
     def create_station
       station_name = station_name_from_user
       @@all_stations << Station.new(station_name)
+    rescue StandardError => e
+      puts e.message
+      retry
+    ensure
       puts "Successfully created station '#{station_name}'"
     end
 
@@ -39,6 +44,10 @@ class Main
                       else
                         PassengerTrain.new(train_number)
                       end
+    rescue StandardError => e
+      puts e.message
+      retry
+    ensure
       puts "Successfully created #{train_type} train  ##{train_number}"
     end
 
@@ -57,6 +66,9 @@ class Main
         @@all_trains[index_of_train].add_carriage(new_carriage)
         puts 'Successfully added carriage'
       end
+    rescue StandardError => e
+      puts e.message
+      retry
     end
 
     def remove_carriage_from_train
@@ -78,7 +90,7 @@ class Main
         puts 'There is no such station'
       else
         station_index = index_of_obj(@@all_stations, needed_station[0])
-        train_number = rain_number_from_user
+        train_number = train_number_from_user
         needed_train = search_obj(@@all_trains, train_number, :train)
         if needed_train[0].nil?
           puts 'There is no such train'
@@ -134,8 +146,8 @@ class Main
     end
 
     def train_number_from_user
-      puts 'Enter train number:'
-      gets.chomp.to_i
+      puts 'Enter train number(123-12):'
+      gets.chomp
     end
 
     def station_name_from_user

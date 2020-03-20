@@ -50,7 +50,7 @@ class Train
   def add_carriage(carriage)
     return unless @speed.zero?
 
-    @carriages << carriage if carriage.type == @type
+    @carriages << carriage if carriage.type == type
   end
 
   def remove_carriage
@@ -67,6 +67,12 @@ class Train
 
   def prev_station
     puts @route[current_station_index - 1] unless current_station_index.nil?
+  end
+
+  def each(&block)
+    for i in 0..carriages - 1
+      yield(@carriages[i])
+    end
   end
 
   protected

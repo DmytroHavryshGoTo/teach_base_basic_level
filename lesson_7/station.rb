@@ -48,13 +48,19 @@ class Station
     @list_of_trains.pop
   end
 
+  def each(&block)
+    for i in 0..@list_of_trains.size - 1
+      yield(@list_of_trains[i])
+    end
+  end
+
   protected
 
   def valid!
     raise 'Name is required!' if @name.nil?
     raise 'Name is too short!' if @name.length < 3
     raise 'Name must be string!' unless @name.is_a? String
-    
+
     true
   end
 end

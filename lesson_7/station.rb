@@ -48,10 +48,8 @@ class Station
     @list_of_trains.pop
   end
 
-  def each(&block)
-    for i in 0..@list_of_trains.size - 1
-      yield(@list_of_trains[i])
-    end
+  def each
+    @list_of_trains.each { |train| yield(train) }
   end
 
   protected

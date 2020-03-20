@@ -69,10 +69,8 @@ class Train
     puts @route[current_station_index - 1] unless current_station_index.nil?
   end
 
-  def each(&block)
-    for i in 0..carriages - 1
-      yield(@carriages[i])
-    end
+  def each
+    @carriages.each { |carriage| yield(carriage) }
   end
 
   protected

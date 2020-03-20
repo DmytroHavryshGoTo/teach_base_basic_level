@@ -31,7 +31,7 @@ class Carriage
 
   def valid?
     valid!
-  rescue
+  rescue StandardError
     false
   end
 

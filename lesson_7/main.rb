@@ -1,15 +1,13 @@
 # frozen_string_literal: true
 
-# For passenger trains add attribute places(set in constructur), method that
-# take place, mathods which return number of taken and free places
-# For cargo the same but instead of place there is volume.
-# Add for Station method that take block and go through all trains and pass
-# every train into block.
-# Add for Train method that take block and go through all carriages and pass
-# every carriage into block.
-# Add to user interface functions of displaying list of carriages and trains,
-# allow to take place in carriage. Also adding total places/volume to
-# carriage when creating carriage.
+# Implement validation in classes(valid! and valid? mathods) - check main
+# attributes. Validation must be called from constructur and not create
+# instance if something wrong.
+# Implement train number regex check, that
+# must be: any 3 numbers or letters than hypen(optional) and 2 numbers
+# or letters.
+# In user interface implement error catching(if user typed something wrong
+# it should be re-typed).
 
 require_relative 'passenger_train'
 require_relative 'cargo_train'
@@ -56,14 +54,16 @@ class Main
     def add_carriage_to_train
       train_number = train_number_from_user
       needed_train = search_obj(@@all_trains, train_number, :train)
+      puts 'Enter quantity of volume or passenger:'
+      train_volume = gets.chomp.to_i
       if needed_train[0].nil?
         puts 'There is no such train'
       else
         index_of_train = index_of_obj(@@all_trains, needed_train[0])
         new_carriage = if needed_train[0].type == :cargo
-                         CargoCarriage.new
+                         CargoCarriage.new(train_volume)
                        else
-                         PassengerCarriage.new
+                         PassengerCarriage.new(train_volume)
                        end
         @@all_trains[index_of_train].add_carriage(new_carriage)
         puts 'Successfully added carriage'
@@ -107,7 +107,42 @@ class Main
     def display_station_trains
       @@all_stations.each do |station|
         puts "---#{station.name}---"
-        station.display_all_trains
+        station.each do |train|
+          puts "##{train.number} | type - #{train.type} | carriages - #{train.carriages}"
+        end
+      end
+    end
+
+    def display_train_carriages
+      train_number = train_number_from_user
+      needed_train = search_obj(@@all_trains, train_number, :train)
+      if needed_train[0].nil?
+        puts 'There is no such train'
+      else
+        index_of_train = index_of_obj(@@all_trains, needed_train[0])
+        @@all_trains[index_of_train].each do |carriage|
+          puts "##{carriage.number} | type - #{carriage.type} free places - #{carriage.free_places} | taken places - #{carriage.taken_places}"
+        end
+      end
+    end
+
+    def take_place_in_carriage
+      train_number = train_number_from_user
+      needed_train = search_obj(@@all_trains, train_number, :train)
+      if needed_train[0].nil?
+        puts 'There is no such train'
+      else
+        puts "Enter number of carriage:"
+        carriage_number = gets.chomp.to_i
+        index_of_train = index_of_obj(@@all_trains, needed_train[0])
+        @@all_trains[index_of_train].each do |carriage|
+          if carriage.number == carriage_number
+            carriage.take_place
+            puts 'Successfully done!'
+            break
+          end
+          puts 'There is no such carriage!'
+        end
       end
     end
 
@@ -122,7 +157,9 @@ class Main
       4 - Remove carriage from train
       5 - Add train to station
       6 - Display stations and trains in them
-      7 - Exit'
+      7 - Display carriages in train
+      8 - Take place in the passenger carraige or increase volume in cargo
+      9 - Exit'
       action = gets.chomp.to_i
       call_action(action)
     end
@@ -141,6 +178,10 @@ class Main
         add_train_to_station
       when 6
         display_station_trains
+      when 7
+        display_train_carriages
+      when 8
+        take_place_in_carriage
       else
         return
       end

@@ -38,6 +38,7 @@ module Accessor
 
       define_method("#{name}=".to_sym) do |value|
         raise "type of #{name} is not a #{klass}" unless value.is_a? klass
+
         instance_variable_set(var_name, value)
       end
     end

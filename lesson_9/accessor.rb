@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+# Create module Accessor that create getter and setter for any
+# quantity of arguments and also keeps all history of variables state.
+# Create method strong_attr_acessor that create getter and setter for
+# variable and checks the type of it, in case if type doesn't match - it
+# raises an error.
+
 # Custom accessor module with history
 module Accessor
   def self.included(base)

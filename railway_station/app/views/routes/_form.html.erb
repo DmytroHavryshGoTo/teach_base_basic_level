@@ -15,6 +15,10 @@
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
+  <div class="field">
+    <%= form.label 'Train stations on this route:' %>
+    <%= form.collection_select :train_station_ids, TrainStation.all, :id, :title, {}, { multiple: true } %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>

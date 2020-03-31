@@ -4,6 +4,7 @@
   <strong>Name:</strong>
   <%= @route.name %>
 </p>
+<%= render 'stations_list' %>
 
 <%= link_to 'Edit', edit_route_path(@route) %> |
 <%= link_to 'Back', routes_path %>

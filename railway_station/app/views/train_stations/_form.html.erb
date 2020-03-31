@@ -1,14 +1,6 @@
 <%= form_with(model: train_station, local: true) do |form| %>
   <% if train_station.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(train_station.errors.count, "error") %> prohibited this train_station from being saved:</h2>
-
-      <ul>
-        <% train_station.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
+    <%= render 'common/error', resource: train_station %>
   <% end %>
 
   <div class="field">

@@ -18,6 +18,22 @@
 <% else %>
   <p>This train has not route</p>
 <% end %>
+<p>
+  <% comfort = default = top_places = bottom_places = 0 %>
+  <% @train.carriages.each do |carriage|
+      if carriage.carriage_type == 'default'
+        default += 1
+      else
+        comfort += 1
+      end
+    top_places += carriage.top_places
+    bottom_places += carriage.bottom_places
+    end %>
+  <h4>Comfort carriages: <%= comfort %></h4>
+  <h4>Default carriages: <%= default %></h4>
+  <h4>Top places: <%= top_places %></h4>
+  <h4>Bottom places: <%= bottom_places %></h4>
+</p>
 
 
 <%= link_to 'Edit', edit_train_path(@train) %> |

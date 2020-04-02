@@ -19,20 +19,26 @@
   <p>This train has not route</p>
 <% end %>
 <p>
-  <% comfort = default = top_places = bottom_places = 0 %>
+  <% comfort = default = comfort_top_places = comfort_bottom_places = default_top_places = default_bottom_places = 0 %>
   <% @train.carriages.each do |carriage|
       if carriage.carriage_type == 'default'
         default += 1
+        default_top_places += carriage.top_places
+        default_bottom_places += carriage.bottom_places
       else
         comfort += 1
+        comfort_top_places += carriage.top_places
+        comfort_bottom_places += carriage.bottom_places
       end
-    top_places += carriage.top_places
-    bottom_places += carriage.bottom_places
     end %>
   <h4>Comfort carriages: <%= comfort %></h4>
   <h4>Default carriages: <%= default %></h4>
-  <h4>Top places: <%= top_places %></h4>
-  <h4>Bottom places: <%= bottom_places %></h4>
+  <h3>Comfortable carriages:</h3>
+  <h4>Top places: <%= comfort_top_places %></h4>
+  <h4>Bottom places: <%= comfort_bottom_places %></h4>
+  <h3>Default carriages:</h3>
+  <h4>Top places: <%= default_top_places %></h4>
+  <h4>Bottom places: <%= default_bottom_places %></h4>
 </p>
 
 

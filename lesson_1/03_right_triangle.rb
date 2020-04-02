@@ -7,7 +7,7 @@
 # что треугольник еще и равнобедренный.
 
 puts 'Введите стороны треугольника через запятую'
-sides = gets.chomp.split(',').map(&:to_f)
+sides = gets.chomp.split(',').map(&:to_i)
 sides.sort!
 
 if sides[0] == sides[1] && sides[1] == sides[2]

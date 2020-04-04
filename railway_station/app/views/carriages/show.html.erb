@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @carriage.type %>
+</p>
+<p>
+  <strong>Train:</strong>
+  <%= @carriage.train.number %>
+</p>
+<p>
+  <strong>Top places:</strong>
+  <%= @carriage.top_places || 0 %>
+</p>
+<p>
+  <strong>Bottom places:</strong>
+  <%= @carriage.bottom_places || 0 %>
+</p>
+<p>
+  <strong>Side top places:</strong>
+  <%= @carriage.side_top_places || 0 %>
+</p>
+<p>
+  <strong>Side bottom places:</strong>
+  <%= @carriage.side_bottom_places || 0 %>
+</p>
+<p>
+  <strong>Seat places:</strong>
+  <%= @carriage.seat_places || 0 %>
+</p>
+
+<%= link_to 'Back', carriages_path %>

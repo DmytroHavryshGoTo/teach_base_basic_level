@@ -13,15 +13,8 @@ leap_year =
     false
   end
 
-index = 1
-number_of_day = date[0]
-while index < date[1]
-  number_of_day += (index % 2).zero? ? 30 : 31
-  index += 1
-end
-if date[1] > 2
-  number_of_day -= leap_year ? 1 : 2
-end
-number_of_day += 1 if date[1] > 7
+months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+number_of_day = months.first(date[1] - 1).sum + date[0]
+number_of_day += 1 if leap_year
 
 puts "Your number of day is #{number_of_day}"

@@ -5,8 +5,7 @@
 abc = {}
 vowels = %w[a e i o u]
 letters = ('a'..'z').to_a
-index = 0
-while index < letters.length
-  abc[letters[index]] = (index + 1) if vowels.include? letters[index]
-  index += 1
+
+vowels.each do |vowel|
+  abc[vowel] = letters.index(vowel) + 1
 end

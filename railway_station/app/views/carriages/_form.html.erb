@@ -1,0 +1,36 @@
+<%= form_with(model: carriage, local: true) do |form| %>
+  <% if carriage.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(carriage.errors.count, "error") %> prohibited this carriage from being saved:</h2>
+
+      <ul>
+        <% carriage.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :carriage_type %>
+    <%= form.select(:carriage_type, options_for_select([['default'], ['comfortable']])) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :top_places %>
+    <%= form.number_field :top_places %>
+  </div>
+  <div class="field">
+    <%= form.label :bottom_places %>
+    <%= form.number_field :bottom_places %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'Train number:' %>
+    <%= form.collection_select :train_id, Train.all, :id, :number %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

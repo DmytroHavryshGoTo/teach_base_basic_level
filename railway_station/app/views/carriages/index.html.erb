@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Carriages</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Type</th>
+    <th>Top places</th>
+    <th>Bottom places</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @carriages.each do |carriage| %>
+    <tr>
+      <td><%= carriage.carriage_type %></td>
+      <td><%= carriage.top_places %></td>
+      <td><%= carriage.bottom_places %></td>
+      <td><%= link_to 'Show', carriage %></td>
+      <td><%= link_to 'Edit', edit_carriage_path(carriage) %></td>
+      <td><%= link_to 'Destroy', carriage, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New carriage', new_carriage_path %>

@@ -16,7 +16,7 @@ require("channels")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbolinks:load', () => {
     const top_places = document.getElementById('top_places')
     const bottom_places = document.getElementById('bottom_places')
     const side_top_places = document.getElementById('side_top_places')

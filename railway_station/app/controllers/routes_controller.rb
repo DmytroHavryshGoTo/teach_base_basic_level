@@ -38,6 +38,10 @@ class RoutesController < ApplicationController
     redirect_to routes_path
   end
 
+  def trains_on_route
+    @trains = Route.find(params[:id]).trains
+  end
+
   private
 
   def route_params

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_03_163022) do
+ActiveRecord::Schema.define(version: 2020_04_06_145112) do
 
   create_table "carriages", force: :cascade do |t|
     t.string "type"
@@ -38,6 +38,9 @@ ActiveRecord::Schema.define(version: 2020_04_03_163022) do
     t.integer "user_id"
     t.integer "base_station_id"
     t.integer "end_station_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "passport_number"
     t.index ["base_station_id"], name: "index_tickets_on_base_station_id"
     t.index ["end_station_id"], name: "index_tickets_on_end_station_id"
     t.index ["train_id"], name: "index_tickets_on_train_id"
@@ -54,6 +57,8 @@ ActiveRecord::Schema.define(version: 2020_04_03_163022) do
     t.integer "train_station_id"
     t.integer "route_id"
     t.integer "number"
+    t.string "departure_time"
+    t.string "arrival_time"
     t.index ["route_id"], name: "index_train_stations_routes_on_route_id"
     t.index ["train_station_id"], name: "index_train_stations_routes_on_train_station_id"
   end
@@ -70,7 +75,8 @@ ActiveRecord::Schema.define(version: 2020_04_03_163022) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "first_name"
+    t.string "last_name"
   end
 
 end

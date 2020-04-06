@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Carriages</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Type</th>
+    <th>Train number</th>
+    <th>Top places</th>
+    <th>Bottom places</th>
+    <th>Side top places</th>
+    <th>Side bottom places</th>
+    <th>Seat places</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @carriages.each do |carriage| %>
+    <tr>
+      <td><%= carriage.type %></td>
+      <td><%= carriage.train.number %></td>
+      <td><%= carriage.top_places || 0 %></td>
+      <td><%= carriage.bottom_places || 0 %></td>
+      <td><%= carriage.side_top_places || 0 %></td>
+      <td><%= carriage.side_bottom_places || 0 %></td>
+      <td><%= carriage.seat_places || 0 %></td>
+      <% carriage = carriage.becomes(Carriage) %>
+      <td><%= link_to 'Show', carriage %></td>
+      <td><%= link_to 'Edit', edit_carriage_path(carriage) %></td>
+      <td><%= link_to 'Destroy', carriage, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+

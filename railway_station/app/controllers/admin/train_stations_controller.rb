@@ -20,7 +20,7 @@ class Admin::TrainStationsController < Admin::BaseController
 
     respond_to do |format|
       if @train_station.save
-        format.html { redirect_to admin_train_stations_path(@train_station), notice: 'Train station was successfully created.' }
+        format.html { redirect_to admin_train_station_path(@train_station), notice: 'Train station was successfully created.' }
       else
         format.html { render :new }
       end
@@ -30,7 +30,7 @@ class Admin::TrainStationsController < Admin::BaseController
   def update
     respond_to do |format|
       if @train_station.update(train_station_params)
-        format.html { redirect_to admin_train_stations_path(@train_station), notice: 'Train station was successfully updated.' }
+        format.html { redirect_to admin_train_station_path(@train_station), notice: 'Train station was successfully updated.' }
       else
         format.html { render :edit }
       end

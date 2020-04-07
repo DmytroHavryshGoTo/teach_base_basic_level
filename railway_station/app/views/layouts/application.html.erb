@@ -11,10 +11,26 @@
 
   <body>
   <div class="main center">
+    <div class="header">
+      <div class="profile">
+        <% if user_signed_in? %>
+          <p>Email: <%= current_user.email %></p>
+          <p>First name: <%= current_user.first_name %></p>
+        <% end %>
+      </div>
+      <div class="login-link">
+        <% if user_signed_in? %>
+          <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to 'Log in', new_user_session_path %>
+        <% end %>
+      </div>
+    </div>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
       <p>(с) 2020 Havrysh Dmytro</p>
       <%= link_to 'Home', welcome_index_path %>
-      <%= link_to 'Search', search_path %>
   </div>
   </body>
 </html>

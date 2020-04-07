@@ -30,3 +30,17 @@
 .mt-30 {
     margin-top: 30px;
 }
+.header {
+    display: flex;
+    justify-content: space-around;
+}
+.header .profile {
+    text-align: left;
+}
+.header .login-link  {
+    text-align: right;
+}
+.header .login-link a {
+    padding-top: 20px;
+    display: block;
+}

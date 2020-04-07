@@ -1,0 +1,8 @@
+<div class="center half-w">
+  <h1>Tickets:</h1>
+  <% @tickets.each do |ticket| %>
+    <p><%= "##{ticket.id} | train - #{ticket.train.number} | passenger #{ticket.first_name} #{ticket.last_name}" %></p>
+    <%= link_to 'Edit', edit_admin_train_ticket_path(ticket.train, ticket) %>
+    <%= link_to 'Destroy', admin_ticket_path(ticket), method: :delete %>
+  <% end %>
+</div>

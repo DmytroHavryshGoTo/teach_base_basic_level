@@ -1,11 +1,9 @@
 <div class="half-w center">
   <h1>Ticket #<%= @ticket.id %></h1>
   <p>First name: <%= @ticket.first_name %></p>
-  <p>Last name: <%= @ticket.last_name %></p>
+  <p>Last name: <%= @ticket.first_name %></p>
   <p>Train: <%= @ticket.train.number %></p>
   <p>From: <%= @ticket.base_station.title %> - <%= @ticket.base_station.arrival_time_in(@ticket.train.route) %></p>
   <p>To: <%= @ticket.end_station.title %> - <%= @ticket.end_station.departure_time_in(@ticket.train.route) %></p>
-  <%= link_to 'Delete ticket', ticket_path, method: :delete %>
-  <%= link_to 'Back to trains', trains_on_route_route_path(@ticket.train.route) %>
-  <%= link_to 'Buy another ticket', new_train_ticket_path(@ticket.train) %>
+  <%= link_to 'Back to tickets', admin_tickets_path %>
 </div>

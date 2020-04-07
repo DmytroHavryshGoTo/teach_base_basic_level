@@ -1,0 +1,14 @@
+<%= form_for ([:admin, @train, @ticket]) do |f| %>
+  <%= f.label :first_name, 'First name' %>
+  <%= f.text_field :first_name %>
+  <%= f.label :last_name, 'Last name' %>
+  <%= f.text_field :last_name %>
+  <%= f.label :passport_number, 'Passport number' %>
+  <%= f.text_field :passport_number %>
+  <%= f.label :base_station, 'From station' %>
+  <%= f.collection_select :base_station_id, @train.route.train_stations.ordered, :id, :title %>
+  <%= f.label :end_station, 'To station' %>
+  <%= f.collection_select :end_station_id, @train.route.train_stations.ordered, :id, :title %>
+  <br>
+  <%= f.submit class: 'mt-30' %>
+<% end %>

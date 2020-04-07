@@ -1,0 +1,22 @@
+<div class="half-w center">
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong>Title:</strong>
+    <%= @train_station.title %>
+  </p>
+  <% if @train_station.routes.empty? %>
+    <p>This station isn't included in any routes.</p>
+  <% else %>
+    <p>List of routes, that include station:</p>
+    <ul>
+      <% @train_station.routes.each do |route| %>
+        <li><%= route.name %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= link_to 'Edit', edit_admin_train_station_path(@train_station) %> |
+  <%= link_to 'Back', admin_train_stations_path %>
+</div>
+

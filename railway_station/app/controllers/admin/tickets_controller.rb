@@ -1,15 +1,16 @@
-class TicketsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_train, only: %i[create new]
-  before_action :set_ticket, only: %i[show destroy]
+class Admin::TicketsController < Admin::BaseController
+  before_action :set_train, only: %i[create new edit]
+  before_action :set_ticket, only: %i[show edit update destroy]
 
   def new
     @ticket = @train.tickets.build
   end
 
   def index
-    @tickets = current_user.tickets
+    @tickets = Ticket.all
   end
+
+  def edit; end
 
   def show; end
 
@@ -23,9 +24,14 @@ class TicketsController < ApplicationController
     end
   end
 
+  def update
+    @ticket.update(ticket_params)
+    redirect_to admin_tickets_path
+  end
+
   def destroy
     @ticket.destroy
-    redirect_to tickets_path
+    redirect_to admin_tickets_path
   end
 
   private
@@ -39,6 +45,6 @@ class TicketsController < ApplicationController
   end
 
   def ticket_params
-    params.require(:ticket).permit(:last_name, :first_name, :passport_number, :base_station_id, :end_station_id)
+    params.require(:ticket).permit(:last_name, :first_name, :passport_number, :base_station_id, :end_station_id, :train_id)
   end
 end

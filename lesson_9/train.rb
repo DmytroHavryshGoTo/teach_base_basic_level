@@ -11,12 +11,21 @@ class Train
   attr_accessor :speed
   @@all_trains = []
 
+  NUMBER_PATTERN = /^[0-9a-zA-Z]{3}-?[0-9a-zA-Z]{2}$/.freeze
+
   def initialize(number)
     @number = number
     @carriages = []
     @speed = 0
+    valid!
     @@all_trains << self
     register_instance
+  end
+
+  def valid?
+    valid?
+  rescue StandardError
+    false
   end
 
   def self.find(train_number)
@@ -41,7 +50,7 @@ class Train
   def add_carriage(carriage)
     return unless @speed.zero?
 
-    @carriages << carriage if carriage.type == @type
+    @carriages << carriage if carriage.type == type
   end
 
   def remove_carriage
@@ -60,7 +69,19 @@ class Train
     puts @route[current_station_index - 1] unless current_station_index.nil?
   end
 
+  def each
+    @carriages.each { |carriage| yield(carriage) }
+  end
+
   protected
+
+  def valid!
+    raise 'Number is required!' if @number.nil?
+    raise 'Speed can not be negative!' if @speed.negative?
+    raise 'Enter right number format!' if @number !~ NUMBER_PATTERN
+
+    true
+  end
 
   def current_station_index
     @route.rindex(@current_station)

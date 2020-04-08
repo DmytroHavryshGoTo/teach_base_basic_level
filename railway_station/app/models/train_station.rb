@@ -2,6 +2,7 @@ class TrainStation < ApplicationRecord
   has_many :trains
   has_many :train_stations_routes
   has_many :routes, through: :train_stations_routes
+  validates :title, presence: true
 
   scope :ordered, -> { joins(:train_stations_routes).order('train_stations_routes.number').uniq }
 

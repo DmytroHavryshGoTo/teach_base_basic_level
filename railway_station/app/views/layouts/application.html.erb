@@ -1,36 +1,70 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>RailwayStation</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= content_for?(:title) ? yield(:title) : "RailwayStation" %></title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag "application", :media => "all" %>
 
-  <body>
-  <div class="main center">
-    <div class="header">
-      <div class="profile">
-        <% if user_signed_in? %>
-          <p>Email: <%= current_user.email %></p>
-          <p>First name: <%= current_user.first_name %></p>
-        <% end %>
+  <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+</head>
+<body>
+<div class="container-fluid p-0 bg-dark">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="navbar navbar-expand-md navbar-dark ">
+          <%= link_to 'RailwayStation', welcome_index_path, class: 'navbar-brand' %>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <% if user_signed_in? %>
+                <li class="pt-2 nav-item">
+                  <p>Email: <%= current_user.email %></p>
+                </li>
+              <% end %>
+              <li class="nav-item">
+                <% if user_signed_in? %>
+                  <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+                <% else %>
+                  <%= link_to 'Log in', new_user_session_path, class: 'nav-link' %>
+                <% end %>
+              </li>
+            </ul>
+            <%= link_to 'Search', search_path, class: 'btn btn-info' %>
+          </div>
+        </nav>
       </div>
-      <div class="login-link">
-        <% if user_signed_in? %>
-          <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
-        <% else %>
-          <%= link_to 'Log in', new_user_session_path %>
-        <% end %>
-      </div>
+
     </div>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
-      <p>(с) 2020 Havrysh Dmytro</p>
-      <%= link_to 'Home', welcome_index_path %>
   </div>
-  </body>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 main mt-4">
+      <% if notice.present? %>
+        <p class="alert alert-success" class="notice "><%= notice %></p>
+      <% end %>
+      <% if alert.present? %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
+
+      <%= yield %>
+    </div>
+  </div><!--/row-->
+
+  <footer>
+    <p>&copy; (с) 2020 Havrysh Dmytro</p>
+  </footer>
+
+</div> <!-- /container -->
+
+</body>
 </html>

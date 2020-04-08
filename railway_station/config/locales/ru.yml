@@ -1,0 +1,62 @@
+ru:
+  hello: 'hello'
+  activerecord:
+    models:
+      train_station: 'Станция'
+      train: 'Поезд'
+      attributes:
+        train_station:
+          title: 'Название'
+        route:
+          name: 'Название'
+        train:
+          number: 'Номер'
+          current_station: 'Текущая станция'
+          route: 'Маршрут'
+    errors:
+      messages:
+        blank: 'не может быть пустым'
+  admin:
+    train_stations:
+      new:
+        title: 'Новая станция'
+      edit:
+        title: 'Редактировать станцию'
+      show:
+        title: 'Название'
+      index:
+        list: 'Список станций'
+        title: 'Название'
+      form:
+        submit: '%{action} станцию'
+        title: 'Название'
+    trains:
+      new:
+        title: 'Новый поезд'
+      edit:
+        title: 'Редактировать поезд'
+      form:
+        submit: '%{action} поезд'
+        number: 'Номер'
+        sort: 'Нумерация вагонов'
+        head: 'С головы'
+        tail: 'С конца'
+        current_station: 'Текущая станция'
+        route: 'Маршрут'
+    routes:
+      new:
+        title: 'Новый маршрут'
+      edit:
+        title: 'Редактировать маршрут'
+      show:
+        title: 'Название'
+      form:
+        submit: '%{action} маршрут'
+        stations_list: 'Список станций в маршруте'
+        title: 'Название'
+  common:
+    back: 'Назад'
+    home: 'Домой'
+    edit: 'Редактировать'
+    errors: 'При заполнении формы возникли ошибки'
+    show: 'Показать'

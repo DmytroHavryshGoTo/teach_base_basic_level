@@ -13,34 +13,35 @@
  *= require_tree .
  *= require_self
  */
-.center {
-    margin: 0 auto;
-    text-align: center;
+@import 'bootstrap/scss/bootstrap';
+
+p {
+  margin: 0
 }
 .main {
-    display: block;
-    width: 1000px;
+    min-height: calc(100vh - 104px);
 }
-.half-w {
-    width: 500px;
+.navbar .nav-item p {
+    color: #fff;
 }
-.w-200 {
-    width: 200px;
+.navbar-dark .navbar-brand {
+    color: #00bbd0;
 }
-.mt-30 {
-    margin-top: 30px;
+.navbar-collapse {
+    justify-content: space-between;
 }
-.header {
-    display: flex;
-    justify-content: space-around;
+.light-blue {
+  background-color: antiquewhite;
 }
-.header .profile {
-    text-align: left;
+.radius-left {
+  border-radius: 5px 0px 0px 5px;
 }
-.header .login-link  {
-    text-align: right;
+.radius-right {
+  border-radius: 0 5px 5px 0;
 }
-.header .login-link a {
-    padding-top: 20px;
-    display: block;
+.routes-result > div {
+  padding: 10px;
+}
+.stations-list > div {
+  padding: 8px;
 }

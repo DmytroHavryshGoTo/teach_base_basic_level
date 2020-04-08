@@ -4,11 +4,11 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label t('.title') %>
     <%= form.text_field :title %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit t('.submit', action: train_station.new_record? ? 'Создать' : 'Редактировать') %>
   </div>
 <% end %>

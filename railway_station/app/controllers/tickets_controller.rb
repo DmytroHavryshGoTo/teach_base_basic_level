@@ -19,7 +19,8 @@ class TicketsController < ApplicationController
     if @ticket.save
       redirect_to train_ticket_path(@train, @ticket)
     else
-      redirect_to new_train_ticket_path(@train)
+      render :new
+      #redirect_to new_train_ticket_path(@train)
     end
   end
 

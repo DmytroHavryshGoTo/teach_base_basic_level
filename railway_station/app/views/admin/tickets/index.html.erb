@@ -1,8 +1,24 @@
-<div class="center half-w">
-  <h1>Tickets:</h1>
-  <% @tickets.each do |ticket| %>
-    <p><%= "##{ticket.id} | train - #{ticket.train.number} | passenger #{ticket.first_name} #{ticket.last_name}" %></p>
-    <%= link_to 'Edit', edit_admin_train_ticket_path(ticket.train, ticket) %>
-    <%= link_to 'Destroy', admin_ticket_path(ticket), method: :delete %>
-  <% end %>
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    <h1 class="text-center">Tickets:</h1>
+    <div class="row">
+      <% @tickets.each do |ticket| %>
+        <div class="col-1 p-1">
+          <%= link_to "##{ticket.id}", train_ticket_path(ticket.train, ticket) %>
+        </div>
+        <div class="col-3 p-1">
+          <p>train - <%= ticket.train.number %></p>
+        </div>
+        <div class="col-4 p-1">
+          passenger  - <%= "#{ticket.first_name} #{ticket.last_name}" %>
+        </div>
+        <div class="col-2 p-1">
+          <%= link_to 'Edit', edit_admin_train_ticket_path(ticket.train, ticket), class: 'btn btn-warning' %>
+        </div>
+        <div class="col-2 p-1">
+          <%= link_to 'Destroy', admin_ticket_path(ticket), method: :delete, class: 'btn btn-danger' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

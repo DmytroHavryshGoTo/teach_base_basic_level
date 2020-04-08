@@ -1,0 +1,43 @@
+<%= form_for [:admin, @train, @carriage.becomes(Carriage)] do |form| %>
+  <% if carriage.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(carriage.errors.count, "error") %> prohibited this carriage from being saved:</h2>
+
+      <ul>
+        <% carriage.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :type %>
+    <%= form.select :type, Carriage::CARRIAGE_TYPES %>
+  </div>
+
+  <div class="field" id="top_places">
+    <%= form.label :top_places %>
+    <%= form.number_field :top_places %>
+  </div>
+  <div class="field" id="bottom_places">
+    <%= form.label :bottom_places %>
+    <%= form.number_field :bottom_places %>
+  </div>
+  <div class="field" id="side_top_places">
+    <%= form.label :side_top_places %>
+    <%= form.number_field :side_top_places %>
+  </div>
+  <div class="field" id="side_bottom_places">
+    <%= form.label :side_bottom_places %>
+    <%= form.number_field :side_bottom_places %>
+  </div>
+  <div class="field" id="seat_places">
+    <%= form.label :seat_places %>
+    <%= form.number_field :seat_places %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

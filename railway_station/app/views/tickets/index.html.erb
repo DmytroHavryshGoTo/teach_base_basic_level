@@ -1,0 +1,6 @@
+<div class="center half-w">
+  <h1>Tickets:</h1>
+  <% @tickets.each do |ticket| %>
+    <p><%= link_to "##{ticket.id}", train_ticket_path(ticket.train, ticket) %> | train - <%= ticket.train.number %> | passenger <%= "#{ticket.first_name} #{ticket.last_name}" %></p>
+  <% end %>
+</div>

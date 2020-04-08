@@ -1,0 +1,7 @@
+<div class="w-half center">
+  <h1>Trains: </h1>
+  <% @trains.each do |train| %>
+    <p>#<%= train.number %> - <%= link_to 'buy ticket', new_train_ticket_path(train) %></p>
+  <% end %>
+  <%=  link_to 'Back to search', search_path %>
+</div>

@@ -1,0 +1,53 @@
+<div class="half-w center">
+  <h1>New ticket</h1>
+  <h3>Train: #<%= @train.number %></h3>
+  <h4>Route: <%= @train.route.name %></h4>
+  <h4>Stations list:</h4>
+  <table class="center">
+    <thead>
+      <tr>
+        <td>Station</td>
+        <td width="150px">Departure/arrival time</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @train.route.train_stations.ordered.each do |station| %>
+      <tr>
+        <td>
+          <%= station.title %>
+        </td>
+        <td>
+          <%= station.departure_time_in(@train.route) %>/<%= station.arrival_time_in(@train.route) %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <h3>Ticket info</h3>
+  <% if @ticket.errors.present? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ticket.errors.count, "error") %> prohibited this carriage from being saved:</h2>
+
+      <ul>
+        <% @ticket.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form_for ([@train, @ticket]) do |f| %>
+    <%= f.label :first_name, 'First name' %>
+    <%= f.text_field :first_name %>
+    <%= f.label :last_name, 'Last name' %>
+    <%= f.text_field :last_name %>
+    <%= f.label :passport_number, 'Passport number' %>
+    <%= f.text_field :passport_number %>
+    <%= f.label :base_station, 'From station' %>
+    <%= f.collection_select :base_station_id, @train.route.train_stations.ordered, :id, :title %>
+    <%= f.label :end_station, 'To station' %>
+    <%= f.collection_select :end_station_id, @train.route.train_stations.ordered, :id, :title %>
+    <br>
+    <%= f.submit 'Buy ticket', class: 'mt-30' %>
+  <% end %>
+</div>
+

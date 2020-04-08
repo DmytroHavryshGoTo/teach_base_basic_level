@@ -1,0 +1,12 @@
+<div class="w-200 center">
+  <% if @route.trains.present? %>
+    <p>List of trains on this route:</p>
+    <ul>
+      <% @route.trains.each do | train | %>
+        <li><%= train.number %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No trains on this route</p>
+  <% end %>
+</div>

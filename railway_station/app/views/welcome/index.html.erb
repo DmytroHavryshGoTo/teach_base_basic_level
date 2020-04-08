@@ -1,0 +1,12 @@
+<h1>Okay, Let's start here!</h1>
+<% if user_signed_in? %>
+  <% if current_user.admin? %>
+    <%= link_to 'Train station', admin_train_stations_path %>
+    <%= link_to 'Trains', admin_trains_path %>
+    <%= link_to 'Carriages', admin_carriages_path %>
+    <%= link_to 'Routes', admin_routes_path %>
+    <%= link_to 'Tickets', admin_tickets_path %>
+  <% end %>
+<% end %>
+<%= link_to 'Tickets', tickets_path %>
+<%= link_to 'Search', search_path %>

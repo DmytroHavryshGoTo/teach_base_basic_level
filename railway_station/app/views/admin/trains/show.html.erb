@@ -1,0 +1,38 @@
+<div class="center half-w">
+
+    <strong>Number:</strong>
+    <%= @train.number %>
+  </p>
+  <% if @train.current_station.present? %>
+    <p>
+    <h4>Current_station: <%= @train.current_station.title %></h4>
+    </p>
+  <% else %>
+    <p>Train is on it's way.</p>
+  <% end %>
+  <% if @train.route.present? %>
+    <p>
+    <h4>Route: <%= @train.route.name %></h4>
+    </p>
+  <% else %>
+    <p>This train has not route</p>
+  <% end %>
+  <p>
+  <h4>Carriages</h4>
+  <ul>
+    <% @train.carriages.each do |carriage| %>
+      <li>
+        <%= link_to "#{carriage.number} - #{carriage.type}", admin_carriage_path(carriage) %>
+      </li>
+    <% end %>
+  </ul>
+  </p>
+
+  <p>
+    <%= link_to 'Add carriage', new_admin_train_carriage_path(@train) %>
+  </p>
+
+  <%= link_to 'Edit', edit_admin_train_path(@train) %> |
+  <%= link_to 'Back', admin_trains_path %>
+</div>
+

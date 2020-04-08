@@ -1,0 +1,24 @@
+<div class="half-w center">
+  <p id="notice"><%= notice %></p>
+
+  <h1>Train Stations</h1>
+
+  <table class="center">
+    <thead>
+    <tr>
+      <th>Title</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <%= render @train_stations %>
+
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New Train Station', new_admin_train_station_path %>
+</div>
+

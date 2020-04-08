@@ -19,7 +19,7 @@
 
   <div class="field">
     <%= form.label t('.sort') %>
-    <%= form.select :sort, options_for_select([[t('.head'), 1], [t('.tail'), 0 ]]) %>
+    <%= form.select :sort, options_for_select([[t('.head'), true], [t('.tail'), false ]]) %>
   </div>
 
   <div class="actions">

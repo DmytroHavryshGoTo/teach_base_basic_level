@@ -4,8 +4,8 @@ class TrainStation < ApplicationRecord
   has_many :routes, through: :train_stations_routes
   validates :title, presence: true
 
-  scope :ordered, -> { joins(:train_stations_routes).order('train_stations_routes.number').uniq }
-
+  scope :ordered, -> { select('train_stations.*, train_stations_routes.number').joins(:train_stations_routes).order("train_stations_routes.number").uniq }
+  
   def update_position(route, position)
     station_route = station_route(route)
     station_route.update(number: position) if station_route

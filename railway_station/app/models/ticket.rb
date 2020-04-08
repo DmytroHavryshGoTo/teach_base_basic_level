@@ -6,9 +6,15 @@ class Ticket < ApplicationRecord
   validates :first_name, :last_name, :passport_number, presence: true
   validate :same_stations?
 
+  after_create :send_email
+
   private
 
   def same_stations?
     errors.add(:base_station, 'and End station cant be same') if base_station == end_station
+  end
+
+  def send_email
+    TicketsMailer.buy_ticket(self.user, self).deliver_now
   end
 end

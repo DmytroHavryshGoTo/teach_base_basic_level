@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @train.number %>
+</p>
+<% if @train.current_station.present? %>
+  <p>
+    <h4>Current_station: <%= @train.current_station.title %></h4>
+  </p>
+<% else %>
+  <p>Train is on it's way.</p>
+<% end %>
+<% if @train.route.present? %>
+  <p>
+  <h4>Route: <%= @train.route.name %></h4>
+  </p>
+<% else %>
+  <p>This train has not route</p>
+<% end %>
+
+
+<%= link_to 'Edit', edit_train_path(@train) %> |
+<%= link_to 'Back', trains_path %>

@@ -1,0 +1,16 @@
+<h1 class="text-center">Dashboard</h1>
+<div class="row">
+  <div class="col-md-8 offset-md-2 text-center">
+    <% if user_signed_in? %>
+      <% if current_user.admin? %>
+        <%= link_to 'Train station', admin_train_stations_path, class: 'btn btn-primary' %>
+        <%= link_to 'Trains', admin_trains_path, class: 'btn btn-primary' %>
+        <%= link_to 'Carriages', admin_carriages_path, class: 'btn btn-primary' %>
+        <%= link_to 'Routes', admin_routes_path, class: 'btn btn-primary' %>
+        <%= link_to 'Tickets', admin_tickets_path, class: 'btn btn-primary' %>
+      <% else %>
+        <%= link_to 'Tickets', tickets_path, class: 'btn btn-primary' %>
+  <% end %>
+    <% end %>
+  </div>
+</div>

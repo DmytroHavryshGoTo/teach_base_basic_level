@@ -1,0 +1,29 @@
+<%= form_for ([:admin, @train, @ticket]) do |f| %>
+  <div class="form-group row">
+    <div class="col">
+      <%= f.label :first_name, 'First name' %>
+      <%= f.text_field :first_name, class: 'form-control' %>
+    </div>
+    <div class="col">
+      <%= f.label :last_name, 'Last name' %>
+      <%= f.text_field :last_name, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :passport_number, 'Passport number' %>
+    <%= f.text_field :passport_number, class: 'form-control' %>
+  </div>
+  <div class="form-group row">
+    <div class="col">
+      <%= f.label :base_station, 'From station' %>
+      <%= f.collection_select :base_station_id, @train.route.train_stations.ordered, :id, :title, {}, {:class => 'form-control'} %>
+    </div>
+    <div class="col">
+      <%= f.label :end_station, 'To station' %>
+      <%= f.collection_select :end_station_id, @train.route.train_stations.ordered, :id, :title, {}, {:class => 'form-control'} %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.submit 'Save ticket', class: 'mt-30', class: 'btn btn-success' %>
+  </div>
+<% end %>

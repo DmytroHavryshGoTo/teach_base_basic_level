@@ -1,0 +1,78 @@
+<div class="row">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="text-center">New ticket</h1>
+      </div>
+      <div class="col-md-6">
+        <h3><span class="badge badge-secondary">Train:</span> #<%= @train.number %></h3>
+      </div>
+      <div class="col-md-6">
+        <h4 class="text-right"> <span class="badge badge-secondary">Route:</span> <%= @train.route.name %></h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <h3 class="text-center">Stations list:</h3>
+        <div class="row stations-list">
+          <div class="col-md-6">
+            <h4>Station</h4>
+          </div>
+          <div class="col-md-6">
+            <h4 class="text-right">Departure/arrival time</h4>
+          </div>
+          <% count = 0 %>
+          <% @train.route.train_stations.ordered.each do |station| %>
+            <div class="col-md-6 radius-left <%= 'light-blue' if count.even? %>">
+              <h5 class="pt-1"><%= station.title %></h5>
+            </div>
+            <div class="col-md-6 radius-right text-right <%= 'light-blue' if count.even? %>">
+              <h6 class="pt-2"><%= station.departure_time_in(@train.route) %>/<%= station.arrival_time_in(@train.route) %></h6>
+            </div>
+            <% count += 1 %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-md-8 offset-md-2">
+        <h3 class="text-center pt-2">Ticket info</h3>
+        <% if @ticket.errors.present? %>
+          <ul class="alert alert-danger">
+            <% @ticket.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+        <%= form_for ([@train, @ticket]) do |f| %>
+          <div class="form-group row">
+            <div class="col">
+              <%= f.label :first_name, 'First name' %>
+              <%= f.text_field :first_name, class: 'form-control' %>
+            </div>
+            <div class="col">
+              <%= f.label :last_name, 'Last name' %>
+              <%= f.text_field :last_name, class: 'form-control' %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :passport_number, 'Passport number' %>
+            <%= f.text_field :passport_number, class: 'form-control' %>
+          </div>
+          <div class="form-group row">
+            <div class="col">
+              <%= f.label :base_station, 'From station' %>
+              <%= f.collection_select :base_station_id, @train.route.train_stations.ordered, :id, :title, {}, {:class => 'form-control'} %>
+            </div>
+            <div class="col">
+              <%= f.label :end_station, 'To station' %>
+              <%= f.collection_select :end_station_id, @train.route.train_stations.ordered, :id, :title, {}, {:class => 'form-control'} %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.submit 'Buy ticket', class: 'mt-30', class: 'btn btn-success' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

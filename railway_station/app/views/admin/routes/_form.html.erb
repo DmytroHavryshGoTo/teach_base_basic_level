@@ -1,0 +1,18 @@
+<%= form_with(model: [:admin, route], local: true) do |form| %>
+  <% if route.errors.any? %>
+    <%= render 'common/error' %>
+  <% end %>
+
+  <div class="field">
+    <%= form.label t('.title') %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label t('.stations_list') %>
+    <%= form.collection_select :train_station_ids, TrainStation.all, :id, :title, {}, { multiple: true } %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit t('.submit', action: route.new_record? ? 'Создать' : 'Изменить') %>
+  </div>
+<% end %>

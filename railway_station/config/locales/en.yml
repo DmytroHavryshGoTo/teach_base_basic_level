@@ -1,0 +1,62 @@
+en:
+  hello: 'hello'
+  activerecord:
+    models:
+      train_station: 'Station'
+      train: 'Train'
+      attributes:
+        train_station:
+          title: 'Title'
+        route:
+          name: 'name'
+        train:
+          number: 'number'
+          current_station: 'Current station'
+          route: 'Route'
+    errors:
+      messages:
+        blank: "can't be blank"
+  admin:
+    train_stations:
+      new:
+        title: 'New Station'
+      edit:
+        title: 'Edit station'
+      show:
+        title: 'Title'
+      index:
+        list: 'List of stations'
+        title: 'title '
+      form:
+        submit: '%{action} station'
+        title: 'title'
+    trains:
+      new:
+        title: 'New train'
+      edit:
+        title: 'Edit train'
+      form:
+        submit: '%{action} train'
+        number: 'Number'
+        sort: 'Carriage numeration'
+        head: 'From head'
+        tail: 'From tail'
+        current_station: 'Current station'
+        route: 'Rout'
+    routes:
+      new:
+        title: 'New route'
+      edit:
+        title: 'Edit route'
+      show:
+        title: 'Title '
+      form:
+        submit: '%{action} route'
+        stations_list: 'Stations in the route'
+        title: 'title'
+  common:
+    back: 'Back'
+    home: 'Home'
+    edit: 'Edit'
+    errors: 'There are some mistakes'
+    show: 'Show'

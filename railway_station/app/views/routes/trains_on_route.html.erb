@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <h1 class="text-center">Trains: </h1>
+    <div class="row pt-2 pb-2">
+      <div class="col-6">
+        <h3>Number</h3>
+      </div>
+
+    </div>
+      <% @trains.each do |train| %>
+      <div class="row pt-2 pb-2">
+        <div class="col-6">
+          <h4>#<%= train.number %></h4>
+        </div>
+        <div class="col-6 text-center">
+          <%= link_to 'buy ticket', new_train_ticket_path(train), class: 'btn btn-success' %>
+        </div>
+      </div>
+      <% end %>
+    <div class="row">
+      <div class="col">
+        <%=  link_to 'Back to search', search_path, class: 'btn btn-secondary' %>
+      </div>
+    </div>
+
+  </div>
+</div>

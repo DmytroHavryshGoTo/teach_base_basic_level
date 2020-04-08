@@ -1,0 +1,2 @@
+class TrainStation < ApplicationRecord
+end
